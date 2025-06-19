@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  /* 👇 Ripple animation keyframes */
+  @keyframes ripple-effect {
+  0% {
+    transform: scale(0);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  }
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(0, 37, 43, 0.25);
+  pointer-events: none;
+  animation: ripple-effect 0.9s linear;
+}
+}
+
+@layer base {
+  /* Light and Dark themes via data-theme attribute on <html> */
+  :root[data-theme="light"] {
+    /* White background, Black text */
+    --background: 0 0% 100%;   /* White */
+    --foreground: 0 0% 0%;     /* Black */
+    --card: 0 0% 100%;         /* White */
+    --card-foreground: 0 0% 0%;
+    --popover: 0 0% 100%;      /* White */
+    --popover-foreground: 0 0% 0%;
+    --primary: 0 0% 0%;        /* Black */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;     /* Light Gray */
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 96%;         /* Light Gray */
+    --muted-foreground: 0 0% 45%;
+    --accent: 0 0% 89.8%;      /* Gray */
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;   /* Red accent */
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 217 91% 60%;
+    --radius: 0.5rem;
+    /* Sidebar vars */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5% 26%;
+    --sidebar-primary: 240 5% 10%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 4% 95%;
+    --sidebar-accent-foreground: 240 5% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 91% 60%;
+  }
+
+  :root[data-theme="dark"] {
+    /* Black background, White text */
+    --background: 0 0% 0%;     /* Black */
+    --foreground: 0 0% 100%;   /* White */
+    --card: 0 0% 0%;           /* Black */
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 0%;        /* Black */
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;      /* White */
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 14.9%;   /* Dark Gray */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 63% 30%;  /* Red accent */
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 14.9%;      
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83%;
+    --radius: 0.5rem;
+    /* Sidebar vars */
+    --sidebar-background: 240 6% 10%;
+    --sidebar-foreground: 240 5% 96%;
+    --sidebar-primary: 224 76% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 4% 15%;
+    --sidebar-accent-foreground: 240 5% 96%;
+    --sidebar-border: 240 4% 15%;
+    --sidebar-ring: 217 91% 60%;
+  }
+
+  
+
+  /* Apply CSS variables */
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[rgb(var(--background))] text-[rgb(var(--foreground))];
+  }
+}
