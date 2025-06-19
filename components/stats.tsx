@@ -3,12 +3,36 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
+import { Card, CardContent } from "@/components/ui/card"
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts"
 
 const stats = [
   { label: "Components", value: 150, suffix: "+" },
   { label: "Downloads", value: 50000, suffix: "+" },
   { label: "Developers", value: 10000, suffix: "+" },
   { label: "Countries", value: 80, suffix: "+" },
+]
+
+const chartData = [
+  { name: "Jan", value: 2800 },
+  { name: "Feb", value: 2700 },
+  { name: "Mar", value: 4400 },
+  { name: "Apr", value: 2100 },
+  { name: "May", value: 1400 },
+  { name: "Jun", value: 2900 },
+  { name: "Jul", value: 5000 },
+  { name: "Aug", value: 2600 },
+  { name: "Sep", value: 3200 },
+  { name: "Oct", value: 1800 },
+  { name: "Nov", value: 1700 },
+  { name: "Dec", value: 1500 },
 ]
 
 function AnimatedCounter({ value, duration = 2000 }: { value: number; duration?: number }) {
@@ -59,7 +83,7 @@ export default function Stats() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -76,6 +100,22 @@ export default function Stats() {
             </motion.div>
           ))}
         </div>
+
+        <Card className="w-full shadow-xl">
+          <CardContent className="p-6">
+            <h3 className="text-lg font-semibold mb-4">Overview</h3>
+            <div className="h-[300px] w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={chartData}>
+                  <XAxis dataKey="name" stroke="hsl(var(--foreground))" fontSize={12} tickLine={false} axisLine={false} />
+                  <YAxis stroke="hsl(var(--foreground))" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value}`} />
+                  <Tooltip cursor={{ fill: "transparent" }} formatter={(v) => `$${v}`} contentStyle={{ backgroundColor: "hsl(var(--background))", borderColor: "hsl(var(--border))" }} />
+                  <Bar dataKey="value" fill="#c8f560" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </section>
   )
