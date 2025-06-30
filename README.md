@@ -2,7 +2,7 @@
 
 A pixel-perfect, fully responsive landing page built with Next.js, featuring a clean black-and-white aesthetic with seamless dark/light mode toggle.
 
-<!-- xyz -->
+
 
 ## ✨ Features
 
